@@ -14,6 +14,8 @@ const TransactionPage = () => {
     variables: { id: id },
   });
 
+  console.log("TransDAta:", data);
+
   const [updateTrans, { loading: loadingUpdate }] = useMutation(
     UPDATE_TRANSACTION,
     {
