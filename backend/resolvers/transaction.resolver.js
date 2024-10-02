@@ -8,15 +8,16 @@ const transactionResolver = {
         const userId = await context.getUser()._id;
 
         const transactions = await Transaction.find({ userId });
+        console.log("resolver data", transactions);
         return transactions;
       } catch (err) {
         console.error("Error getting transactions:", err);
         throw new Error("Error getting transactions");
       }
     },
-    transaction: async (_, { transationId }) => {
+    transaction: async (_, { transactionId }) => {
       try {
-        const transaction = await Transaction.findById(transationId);
+        const transaction = await Transaction.findById(transactionId);
         return transaction;
       } catch (err) {
         console.error("Error getting transaction:", err);
