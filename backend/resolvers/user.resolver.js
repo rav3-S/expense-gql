@@ -1,4 +1,7 @@
 import { users } from "../dummyData/data.js";
+import Transaction from "../models/transaction.model.js";
+import User from "../models/user.model.js";
+import bcrypt from "bcryptjs";
 
 const userResolver = {
   Mutation: {
@@ -71,7 +74,7 @@ const userResolver = {
   },
 
   Query: {
-    authUser: async (_, _, context) => {
+    authUser: async (_, __, context) => {
       try {
         const user = await context.getUser();
         return user;
