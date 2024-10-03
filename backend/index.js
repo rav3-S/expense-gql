@@ -18,8 +18,12 @@ import mergedTypeDefs from "./typeDefs/index.js";
 import { connectDB } from "./db/connectDB.js";
 import { configurePassport } from "./passport/passport.config.js";
 
+import job from "./cron.js";
+
 dotenv.config();
 configurePassport();
+
+job.start(); //cron job to send a req every 14 mins to keep free render server alive
 
 const __dirname = path.resolve();
 const app = express();
