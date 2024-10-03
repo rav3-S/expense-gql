@@ -9,7 +9,6 @@ const transactionResolver = {
         const userId = await context.getUser()._id;
 
         const transactions = await Transaction.find({ userId });
-        console.log("resolver data", transactions);
         return transactions;
       } catch (err) {
         console.error("Error getting transactions:", err);
@@ -25,7 +24,6 @@ const transactionResolver = {
         throw new Error("Error getting transaction");
       }
     },
-    // TODO: CATEGORY STATISTICS
     categoryStatistics: async (_, __, context) => {
       if (!context.getUser()) throw new Error("Unauthorized");
 
@@ -99,7 +97,6 @@ const transactionResolver = {
     },
   },
 
-  // TODO: TRANSATION/USER RELATIONSHIP
   Transaction: {
     user: async (parent) => {
       const userId = parent.userId;

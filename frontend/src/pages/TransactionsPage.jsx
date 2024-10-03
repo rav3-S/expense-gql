@@ -8,18 +8,16 @@ import toast from "react-hot-toast";
 
 const TransactionPage = () => {
   const { id } = useParams();
-  console.log("id", id);
 
   const { loading, data } = useQuery(GET_TRANSACTION, {
     variables: { id: id },
   });
 
-  console.log("TransDAta:", data);
-
   const [updateTrans, { loading: loadingUpdate }] = useMutation(
     UPDATE_TRANSACTION,
     {
-      refetchQueries: ["GetTransactions", "GetTransactionStatistics"],
+      // https://github.com/apollographql/apollo-client/issues/5419 => refetchQueries is not working, and here is how we fixed it
+      refetchQueries: [{ query: GET_TRANSACTION_STATISTICS }],
     }
   );
 
